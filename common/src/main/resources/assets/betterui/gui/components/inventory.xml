@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ldlib2-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Low-Drag-MC/LDLib2/refs/heads/1.21/ldlib2-ui.xsd">
+    <root>
+        <element class="panel_bg col" style="margin-top: 2; gap-all: 0;">
+            <element class="row">
+                <item-slot id="slot_9"/>
+                <item-slot id="slot_10"/>
+                <item-slot id="slot_11"/>
+                <item-slot id="slot_12"/>
+                <item-slot id="slot_13"/>
+                <item-slot id="slot_14"/>
+                <item-slot id="slot_15"/>
+                <item-slot id="slot_16"/>
+                <item-slot id="slot_17"/>
+            </element>
+            <element class="row">
+                <item-slot id="slot_18"/>
+                <item-slot id="slot_19"/>
+                <item-slot id="slot_20"/>
+                <item-slot id="slot_21"/>
+                <item-slot id="slot_22"/>
+                <item-slot id="slot_23"/>
+                <item-slot id="slot_24"/>
+                <item-slot id="slot_25"/>
+                <item-slot id="slot_26"/>
+            </element>
+            <element class="row">
+                <item-slot id="slot_27"/>
+                <item-slot id="slot_28"/>
+                <item-slot id="slot_29"/>
+                <item-slot id="slot_30"/>
+                <item-slot id="slot_31"/>
+                <item-slot id="slot_32"/>
+                <item-slot id="slot_33"/>
+                <item-slot id="slot_34"/>
+                <item-slot id="slot_35"/>
+            </element>
+            <element class="row" style="margin-top: 4">
+                <item-slot id="slot_36"/>
+                <item-slot id="slot_37"/>
+                <item-slot id="slot_38"/>
+                <item-slot id="slot_39"/>
+                <item-slot id="slot_40"/>
+                <item-slot id="slot_41"/>
+                <item-slot id="slot_42"/>
+                <item-slot id="slot_43"/>
+                <item-slot id="slot_44"/>
+            </element>
+        </element>
+    </root>
+</ldlib2-ui>

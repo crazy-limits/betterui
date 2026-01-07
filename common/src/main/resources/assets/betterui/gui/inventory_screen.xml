@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ldlib2-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Low-Drag-MC/LDLib2/refs/heads/1.21/ldlib2-ui.xsd">
+    <stylesheet location="ldlib2:lss/mc.lss"/>
+    <style>
+        scroller-view {
+        scroller-view-margin: 10;
+        }
+
+        .__scroller_view_view-port__ {
+        background: built-in(ui-mc:RECT_1);
+        padding-all: 1;
+        padding-right: 0;
+        }
+
+        .__scroller_view_horizontal-scroller__ {
+        margin-top: 2;
+        }
+
+        .__scroller_view_vertical-scroller__ {
+        margin-left: 0;
+        }
+
+        .__scroller_scroll_container__ {
+        padding-all: 1;
+        }
+
+        .panel_bg {
+        padding-all: 7;
+        }
+
+        .flex {
+        display: flex;
+        }
+
+        .grid {
+        display: grid;
+        }
+
+        .row {
+        display: flex;
+        flex-direction: row;
+        }
+
+        .col {
+        display: flex;
+        flex-direction: column;
+        }
+    </style>
+    <root style="display:flex; flex-direction: column, gap: 2; width: auto; height: auto; padding-all: 7;">
+        <!--<element class="panel_bg row" style="gap-all: 0">-->
+        <!--    <element class="row">-->
+        <!--        <element class="col">-->
+        <!--            <item-slot id="slot_5"/>-->
+        <!--            <item-slot id="slot_6"/>-->
+        <!--            <item-slot id="slot_7"/>-->
+        <!--            <item-slot id="slot_8"/>-->
+        <!--        </element>-->
+        <!--        <item-slot id="slot_45"/>-->
+        <!--    </element>-->
+        <!--    <element class="row">-->
+        <!--        <element class="col">-->
+        <!--            <element class="row">-->
+        <!--                <item-slot id="slot_1"/>-->
+        <!--                <item-slot id="slot_2"/>-->
+        <!--            </element>-->
+        <!--            <element class="row">-->
+        <!--                <item-slot id="slot_3"/>-->
+        <!--                <item-slot id="slot_4"/>-->
+        <!--            </element>-->
+        <!--        </element>-->
+        <!--        <item-slot id="slot_0"/>-->
+        <!--    </element>-->
+        <!--</element>-->
+
+        <!--<element class="panel_bg col" style="margin-top: 2; gap-all: 0;">-->
+        <!--    <element class="row">-->
+        <!--        <item-slot id="slot_9"/>-->
+        <!--        <item-slot id="slot_10"/>-->
+        <!--        <item-slot id="slot_11"/>-->
+        <!--        <item-slot id="slot_12"/>-->
+        <!--        <item-slot id="slot_13"/>-->
+        <!--        <item-slot id="slot_14"/>-->
+        <!--        <item-slot id="slot_15"/>-->
+        <!--        <item-slot id="slot_16"/>-->
+        <!--        <item-slot id="slot_17"/>-->
+        <!--    </element>-->
+        <!--    <element class="row">-->
+        <!--        <item-slot id="slot_18"/>-->
+        <!--        <item-slot id="slot_19"/>-->
+        <!--        <item-slot id="slot_20"/>-->
+        <!--        <item-slot id="slot_21"/>-->
+        <!--        <item-slot id="slot_22"/>-->
+        <!--        <item-slot id="slot_23"/>-->
+        <!--        <item-slot id="slot_24"/>-->
+        <!--        <item-slot id="slot_25"/>-->
+        <!--        <item-slot id="slot_26"/>-->
+        <!--    </element>-->
+        <!--    <element class="row">-->
+        <!--        <item-slot id="slot_27"/>-->
+        <!--        <item-slot id="slot_28"/>-->
+        <!--        <item-slot id="slot_29"/>-->
+        <!--        <item-slot id="slot_30"/>-->
+        <!--        <item-slot id="slot_31"/>-->
+        <!--        <item-slot id="slot_32"/>-->
+        <!--        <item-slot id="slot_33"/>-->
+        <!--        <item-slot id="slot_34"/>-->
+        <!--        <item-slot id="slot_35"/>-->
+        <!--    </element>-->
+        <!--    <element class="row" style="margin-top: 4">-->
+        <!--        <item-slot id="slot_36"/>-->
+        <!--        <item-slot id="slot_37"/>-->
+        <!--        <item-slot id="slot_38"/>-->
+        <!--        <item-slot id="slot_39"/>-->
+        <!--        <item-slot id="slot_40"/>-->
+        <!--        <item-slot id="slot_41"/>-->
+        <!--        <item-slot id="slot_42"/>-->
+        <!--        <item-slot id="slot_43"/>-->
+        <!--        <item-slot id="slot_44"/>-->
+        <!--    </element>-->
+        <!--</element>-->
+        <inventory-slots id="inventory_screen"/>
+    </root>
+</ldlib2-ui>

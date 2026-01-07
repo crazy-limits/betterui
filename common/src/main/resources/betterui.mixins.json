@@ -1,0 +1,18 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "crazylimits.betterui.mixin",
+	"refmap": "${mod_id}.refmap.json",
+	"compatibilityLevel": "JAVA_18",
+	"mixins": [
+		"InventoryScreenMixin",
+		"ScreenInvoker"
+	],
+	"client": [
+		"MixinMinecraft"
+	],
+	"server": [],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
