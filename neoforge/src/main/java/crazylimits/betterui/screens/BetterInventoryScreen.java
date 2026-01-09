@@ -13,8 +13,8 @@ public class BetterInventoryScreen extends ModularUIContainerScreen {
         Constants.MOD_ID, "gui/inventory_screen.xml"
     );
 
-    public BetterInventoryScreen(Player player) {
-        super(new BetterInventoryMenu(player), player.getInventory(), Component.translatable("container.crafting"));
+    public BetterInventoryScreen(BetterInventoryMenu menu, Player player) {
+        super(menu, player.getInventory(), Component.translatable("container.crafting"));
     }
 
     @Override

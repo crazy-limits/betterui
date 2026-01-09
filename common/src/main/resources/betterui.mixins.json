@@ -6,10 +6,10 @@
 	"compatibilityLevel": "JAVA_18",
 	"mixins": [
 		"InventoryScreenMixin",
-		"ScreenInvoker"
+		"ScreenInvoker",
+		"MixinMinecraft"
 	],
 	"client": [
-		"MixinMinecraft"
 	],
 	"server": [],
 	"injectors": {

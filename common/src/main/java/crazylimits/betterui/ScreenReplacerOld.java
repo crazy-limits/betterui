@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class ScreenReplacer {
+public class ScreenReplacerOld {
     public static Map<Class<? extends Screen>, Function<Screen, Screen>> SCREEN_REPLACEMENTS = new HashMap<>();
 
     public static <T extends Screen> void register(

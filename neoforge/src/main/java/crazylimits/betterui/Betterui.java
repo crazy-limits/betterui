@@ -1,9 +1,9 @@
 package crazylimits.betterui;
 
-
-import crazylimits.betterui.screens.BetterInventoryScreen;
+import crazylimits.betterui.network.OpenSimpleInventoryPayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
@@ -11,17 +11,29 @@ import net.neoforged.fml.common.Mod;
 public class Betterui {
 
     public Betterui(IEventBus eventBus) {
-        // This method is invoked by the NeoForge mod loader when it is ready
-        // to load your mod. You can access NeoForge and Common code in this
-        // project.
-
-        // Use NeoForge to bootstrap the Common mod.
         Constants.LOG.info("Hello NeoForge world!");
         CommonClass.init();
 
+        ModMenuTypes.register(eventBus);
+
         ScreenReplacer.register(
                 InventoryScreen.class,
-                original -> new BetterInventoryScreen(Minecraft.getInstance().player)
+                original -> {
+                    Minecraft mc = Minecraft.getInstance();
+                    if (mc.player == null) return original;
+
+                    // Keep creative inventory unchanged
+                    if (mc.gameMode != null && mc.gameMode.hasInfiniteItems()) {
+                        return original;
+                    }
+
+                    // Ask server to open our custom inventory menu
+                    PacketDistributor.sendToServer(new OpenSimpleInventoryPayload());
+
+                    // Return null => ScreenReplacer cancels opening vanilla screen
+                    // The server will shortly respond with openMenu, which opens our screen.
+                    return null;
+                }
         );
     }
 }
