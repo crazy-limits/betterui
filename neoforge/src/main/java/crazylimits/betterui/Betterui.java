@@ -1,39 +1,40 @@
 package crazylimits.betterui;
 
-import crazylimits.betterui.network.OpenSimpleInventoryPayload;
+import crazylimits.betterui.network.BetteruiNetwork;
+import crazylimits.betterui.replacement.ClientMenuReplacementHelper;
+import crazylimits.betterui.replacement.MenuReplacementRegistry;
+import crazylimits.betterui.menus.SimpleInventoryMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
 @Mod(Constants.MOD_ID)
 public class Betterui {
 
-    public Betterui(IEventBus eventBus) {
+    public Betterui(IEventBus modBus) {
         Constants.LOG.info("Hello NeoForge world!");
         CommonClass.init();
 
-        ModMenuTypes.register(eventBus);
+        ModMenuTypes.register(modBus);
 
-        ScreenReplacer.register(
+        // Networking: payloads
+        modBus.addListener(BetteruiNetwork::registerPayloads);
+
+        // Server-side registration: what to open when client asks for SIMPLE_INVENTORY
+        MenuReplacementRegistry.registerServerReplacement(
+                BetterUiIds.SIMPLE_INVENTORY,
+                Component.translatable("container.crafting"),
+                (containerId, inv, player) ->
+                        new SimpleInventoryMenu(containerId, inv)
+        );
+
+        // Client-side: intercept vanilla InventoryScreen and ask server to open SIMPLE_INVENTORY
+        ClientMenuReplacementHelper.replaceScreenWithServerMenu(
                 InventoryScreen.class,
-                original -> {
-                    Minecraft mc = Minecraft.getInstance();
-                    if (mc.player == null) return original;
-
-                    // Keep creative inventory unchanged
-                    if (mc.gameMode != null && mc.gameMode.hasInfiniteItems()) {
-                        return original;
-                    }
-
-                    // Ask server to open our custom inventory menu
-                    PacketDistributor.sendToServer(new OpenSimpleInventoryPayload());
-
-                    // Return null => ScreenReplacer cancels opening vanilla screen
-                    // The server will shortly respond with openMenu, which opens our screen.
-                    return null;
-                }
+                BetterUiIds.SIMPLE_INVENTORY,
+                mc -> mc.gameMode == null || !mc.gameMode.hasInfiniteItems() // skip creative
         );
     }
 }

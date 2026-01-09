@@ -1,40 +1,26 @@
 package crazylimits.betterui.network;
 
-import crazylimits.betterui.Constants;
-import crazylimits.betterui.menus.SimpleInventoryMenu;
-import net.minecraft.network.chat.Component;
+import crazylimits.betterui.replacement.MenuReplacementRegistry;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.SimpleMenuProvider;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-@EventBusSubscriber(modid = Constants.MOD_ID)
-public class BetteruiNetwork {
+public final class BetteruiNetwork {
 
-    @SubscribeEvent
+    private BetteruiNetwork() {}
+
     public static void registerPayloads(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar(Constants.MOD_ID)
-                .versioned("1"); // your protocol version
+        // Network protocol version for your mod, must match client/server
+        PayloadRegistrar registrar = event.registrar("1");
 
         registrar.playToServer(
-                OpenSimpleInventoryPayload.TYPE,
-                OpenSimpleInventoryPayload.STREAM_CODEC,
+                OpenMenuReplacementPayload.TYPE,
+                OpenMenuReplacementPayload.STREAM_CODEC,
                 (payload, ctx) -> {
-                    // enqueueWork is the correct way to switch to the main server thread
                     ctx.enqueueWork(() -> {
-                        if (!(ctx.player() instanceof ServerPlayer player)) {
-                            return;
+                        if (ctx.player() instanceof ServerPlayer player) {
+                            MenuReplacementRegistry.openOnServer(payload.id(), player);
                         }
-
-                        player.openMenu(
-                                new SimpleMenuProvider(
-                                        (containerId, inv, p) ->
-                                                new SimpleInventoryMenu(containerId, inv),
-                                        Component.translatable("container.crafting")
-                                )
-                        );
                     });
                 }
         );

@@ -6,10 +6,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(
-        modid = Constants.MOD_ID,
-        value = Dist.CLIENT
-)
+@EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class BetteruiClient {
 
     @SubscribeEvent
