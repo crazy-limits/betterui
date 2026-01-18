@@ -6,8 +6,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 
-public record OpenMenuReplacementPayload(ResourceLocation id)
-        implements CustomPacketPayload {
+public record OpenMenuReplacementPayload(ResourceLocation id) implements CustomPacketPayload {
 
     public static final Type<OpenMenuReplacementPayload> TYPE =
             new Type<>(ResourceLocation.fromNamespaceAndPath(

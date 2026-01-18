@@ -1,6 +1,6 @@
 package crazylimits.betterui.network;
 
-import crazylimits.betterui.replacement.MenuReplacementRegistry;
+import crazylimits.betterui.replacement.ServerReplacementRegistry;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -19,7 +19,7 @@ public final class BetteruiNetwork {
                 (payload, ctx) -> {
                     ctx.enqueueWork(() -> {
                         if (ctx.player() instanceof ServerPlayer player) {
-                            MenuReplacementRegistry.openOnServer(payload.id(), player);
+                            ServerReplacementRegistry.openOnServer(payload.id(), player);
                         }
                     });
                 }

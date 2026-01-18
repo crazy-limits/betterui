@@ -2,7 +2,10 @@
 <ldlib2-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Low-Drag-MC/LDLib2/refs/heads/1.21/ldlib2-ui.xsd">
     <stylesheet location="ldlib2:lss/mc.lss"/>
+
+    <!-- Tailwind-like utility classes -->
     <style>
+        /* Existing component tweaks (kept as-is) */
         scroller-view {
         scroller-view-margin: 10;
         }
@@ -25,100 +28,111 @@
         padding-all: 1;
         }
 
-        .panel_bg {
-        padding-all: 7;
+        /* Utility classes */
+        .flex { display: flex; }
+        .grid { display: grid; }
+
+        .row { display: flex; flex-direction: row; }
+        .col { display: flex; flex-direction: column; }
+
+        .flex-1 { flex: 1; }
+        .shrink-1 { flex-shrink: 1; }
+
+        .relative { position: relative; }
+
+        .w-fit { width: fit-content; }
+        .h-fit { height: fit-content; }
+        .w-auto { width: auto; }
+        .h-auto { height: auto; }
+        .h-full { height: 100%; }
+        .w-full { width: 100%; }
+
+        .p-1 { padding-all: 1; }
+        .p-7 { padding-all: 7; }
+
+        .m-1 { margin-all: 1; }
+        .mt-2 { margin-top: 2; }
+
+        .gap-0 { gap-all: 0; }
+        .gap-2 { gap-all: 2; }
+        .gap-3 { gap-all: 3; }
+        .gap-4 { gap-all: 4; }
+
+        .items-end { align-items: flex-end; }
+        .items-center { align-items: center; }
+        .justify-end { justify-content: flex-end; }
+        .justify-center { justify-content: center; }
+
+        /* Semantic alias (optional; matches your old class) */
+        .panel_bg { padding-all: 7; }
+        .overflow-hidden { overflow: hidden; }
+
+        .spacer {
+            display: flex;
+            flex-grow: 1;
         }
 
-        .flex {
-        display: flex;
+        .panel-inner_bg {
+            background: sprite(
+                betterui:textures/gui/sprites/container/inventory/player_background.png,
+                0, 0, 18, 18,
+                2, 2, 2, 2
+            );
         }
 
-        .grid {
-        display: grid;
+        .panel-side {
+            height: 32;
+            width: 25;
+            padding-all: 7;
         }
 
-        .row {
-        display: flex;
-        flex-direction: row;
+        .background {
+            background: sprite(betterui:textures/gui/sprites/container/inventory/inventory_background.png);
+            width: 220;
+            height: 90;
+            padding-all: 7;
         }
 
-        .col {
-        display: flex;
-        flex-direction: column;
+        .panel-left {
+            padding-right: 0;
+        }
+
+        .panel-right {
+            padding-left: 0;
+        }
+
+        .__inventory_hotbar__ {
+            margin-top: 4;
         }
     </style>
-    <root style="display:flex; flex-direction: column, gap: 2; width: auto; height: auto; padding-all: 7;">
-        <!--<element class="panel_bg row" style="gap-all: 0">-->
-        <!--    <element class="row">-->
-        <!--        <element class="col">-->
-        <!--            <item-slot id="slot_5"/>-->
-        <!--            <item-slot id="slot_6"/>-->
-        <!--            <item-slot id="slot_7"/>-->
-        <!--            <item-slot id="slot_8"/>-->
-        <!--        </element>-->
-        <!--        <item-slot id="slot_45"/>-->
-        <!--    </element>-->
-        <!--    <element class="row">-->
-        <!--        <element class="col">-->
-        <!--            <element class="row">-->
-        <!--                <item-slot id="slot_1"/>-->
-        <!--                <item-slot id="slot_2"/>-->
-        <!--            </element>-->
-        <!--            <element class="row">-->
-        <!--                <item-slot id="slot_3"/>-->
-        <!--                <item-slot id="slot_4"/>-->
-        <!--            </element>-->
-        <!--        </element>-->
-        <!--        <item-slot id="slot_0"/>-->
-        <!--    </element>-->
-        <!--</element>-->
 
-        <!--<element class="panel_bg col" style="margin-top: 2; gap-all: 0;">-->
-        <!--    <element class="row">-->
-        <!--        <item-slot id="slot_9"/>-->
-        <!--        <item-slot id="slot_10"/>-->
-        <!--        <item-slot id="slot_11"/>-->
-        <!--        <item-slot id="slot_12"/>-->
-        <!--        <item-slot id="slot_13"/>-->
-        <!--        <item-slot id="slot_14"/>-->
-        <!--        <item-slot id="slot_15"/>-->
-        <!--        <item-slot id="slot_16"/>-->
-        <!--        <item-slot id="slot_17"/>-->
-        <!--    </element>-->
-        <!--    <element class="row">-->
-        <!--        <item-slot id="slot_18"/>-->
-        <!--        <item-slot id="slot_19"/>-->
-        <!--        <item-slot id="slot_20"/>-->
-        <!--        <item-slot id="slot_21"/>-->
-        <!--        <item-slot id="slot_22"/>-->
-        <!--        <item-slot id="slot_23"/>-->
-        <!--        <item-slot id="slot_24"/>-->
-        <!--        <item-slot id="slot_25"/>-->
-        <!--        <item-slot id="slot_26"/>-->
-        <!--    </element>-->
-        <!--    <element class="row">-->
-        <!--        <item-slot id="slot_27"/>-->
-        <!--        <item-slot id="slot_28"/>-->
-        <!--        <item-slot id="slot_29"/>-->
-        <!--        <item-slot id="slot_30"/>-->
-        <!--        <item-slot id="slot_31"/>-->
-        <!--        <item-slot id="slot_32"/>-->
-        <!--        <item-slot id="slot_33"/>-->
-        <!--        <item-slot id="slot_34"/>-->
-        <!--        <item-slot id="slot_35"/>-->
-        <!--    </element>-->
-        <!--    <element class="row" style="margin-top: 4">-->
-        <!--        <item-slot id="slot_36"/>-->
-        <!--        <item-slot id="slot_37"/>-->
-        <!--        <item-slot id="slot_38"/>-->
-        <!--        <item-slot id="slot_39"/>-->
-        <!--        <item-slot id="slot_40"/>-->
-        <!--        <item-slot id="slot_41"/>-->
-        <!--        <item-slot id="slot_42"/>-->
-        <!--        <item-slot id="slot_43"/>-->
-        <!--        <item-slot id="slot_44"/>-->
-        <!--    </element>-->
-        <!--</element>-->
-        <inventory-slots id="inventory_screen"/>
+    <root class="flex col items-center gap-2 w-auto h-auto p-7">
+        <element class="row gap-2 shrink-1">
+            <!--<element class="spacer"/>-->
+            <element class="panel_bg row flex relative shrink-1 gap-0">
+                <armor-slots />
+                <element class="panel-inner_bg">
+                    <entity id="entity" />
+                </element>
+            </element>
+            <element class="panel_bg col shrink-1">
+                <crafting-slots id="crafting_slots" />
+                <element class="spacer"/>
+                <item-slot id="result_slot" />
+            </element>
+            <!--<element class="spacer"/>-->
+        </element>
+
+        <element class="background row gap-4 flex items-end justify-center">
+            <element class="col justify-end">
+                <element class="spacer"/>
+                <offhand-slot />
+            </element>
+            <inventory-slots id="inventory_screen"/>
+            <element class="col justify-end">
+                <element class="spacer"/>
+                <item-slot id="trash" />
+            </element>
+        </element>
     </root>
 </ldlib2-ui>

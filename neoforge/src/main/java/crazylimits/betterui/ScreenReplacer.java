@@ -42,7 +42,15 @@ public class ScreenReplacer {
 
             if (keyClass.isInstance(newScreen)) {
                 Screen replaced = entry.getValue().apply(newScreen);
-                if (replaced != null && replaced != newScreen) {
+
+                if (replaced == newScreen) {
+                    // Keep vanilla screen, do nothing
+                } else if (replaced == null) {
+                    // Cancel opening this screen; we expect the server to open
+                    // a menu shortly (e.g. via openMenu).
+                    event.setNewScreen(null);
+                } else {
+                    // Replace vanilla with our custom screen right now
                     event.setNewScreen(replaced);
                 }
                 break;

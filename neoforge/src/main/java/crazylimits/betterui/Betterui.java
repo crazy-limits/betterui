@@ -1,8 +1,11 @@
 package crazylimits.betterui;
 
+import crazylimits.betterui.data.ModAttachments;
+import crazylimits.betterui.menus.BetterInventoryMenu;
 import crazylimits.betterui.network.BetteruiNetwork;
-import crazylimits.betterui.replacement.ReplacementsRegistry;
-import crazylimits.betterui.replacements.SurvivalInventoryReplacement;
+import crazylimits.betterui.replacement.ReplacementRegistry;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
@@ -13,12 +16,17 @@ public class Betterui {
         Constants.LOG.info("Hello NeoForge world!");
         CommonClass.init();
 
-        ModMenuTypes.register(modBus);
+        BetteruiMenuTypes.register(modBus);
 
-        // Networking
+        ModAttachments.ATTACHMENT_TYPES.register(modBus);
+
         modBus.addListener(BetteruiNetwork::registerPayloads);
 
-        // Register server side of replacements
-        ReplacementsRegistry.registerServer(SurvivalInventoryReplacement.Server.INSTANCE);
+        ReplacementRegistry.register(
+                BetteruiMenuTypes.INVENTORY.getId(),
+                Component.empty(),
+                BetterInventoryMenu::new,
+                InventoryScreen.class
+        );
     }
 }
