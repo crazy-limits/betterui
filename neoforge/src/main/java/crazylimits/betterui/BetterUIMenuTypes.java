@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class BetteruiMenuTypes {
+public class BetterUIMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU, Constants.MOD_ID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<ModularUIContainerMenu>> INVENTORY = registerMenuType("inventory", BetterInventoryMenu::new);

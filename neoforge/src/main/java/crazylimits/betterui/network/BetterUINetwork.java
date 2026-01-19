@@ -5,14 +5,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
-public final class BetteruiNetwork {
+public final class BetterUINetwork {
 
-    private BetteruiNetwork() {}
+    private BetterUINetwork() {}
 
     public static void registerPayloads(RegisterPayloadHandlersEvent event) {
-        // Network protocol version for your mod, must match client/server
+        // protocol version
         PayloadRegistrar registrar = event.registrar("1");
 
+        // existing
         registrar.playToServer(
                 OpenMenuReplacementPayload.TYPE,
                 OpenMenuReplacementPayload.STREAM_CODEC,
@@ -20,6 +21,19 @@ public final class BetteruiNetwork {
                     ctx.enqueueWork(() -> {
                         if (ctx.player() instanceof ServerPlayer player) {
                             ServerReplacementRegistry.openOnServer(payload.id(), player);
+                        }
+                    });
+                }
+        );
+
+        // NEW: trash delete
+        registrar.playToServer(
+                TrashDeletePayload.TYPE,
+                TrashDeletePayload.STREAM_CODEC,
+                (payload, ctx) -> {
+                    ctx.enqueueWork(() -> {
+                        if (ctx.player() instanceof ServerPlayer player) {
+                            TrashDeletePayload.handle(payload, player);
                         }
                     });
                 }

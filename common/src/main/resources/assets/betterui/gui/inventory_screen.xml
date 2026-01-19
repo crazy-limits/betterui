@@ -16,6 +16,16 @@
         padding-right: 0;
         }
 
+        .absolute {
+        position: absolute;
+        }
+        .top-0 {
+        top: 0;
+        }
+        .left-0 {
+        left: 0;
+        }
+
         .__scroller_view_horizontal-scroller__ {
         margin-top: 2;
         }
@@ -104,34 +114,121 @@
         .__inventory_hotbar__ {
             margin-top: 4;
         }
+
+        #trash {
+            background: sprite(
+                betterui:textures/gui/sprites/container/inventory/trash_slot.png
+            );
+        }
+
+        .inventory-button {
+            width: 14;
+            padding-all: 3;
+        }
+
+        .inventory-button--bottom {
+            height: 13;
+            padding-top: 2;
+            base-background: sprite(
+                betterui:textures/gui/sprites/container/inventory/inventory_button_bottom.png
+            );
+            hover-background: sprite(
+                betterui:textures/gui/sprites/container/inventory/inventory_button_bottom_highlight.png
+            );
+            pressed-background: sprite(
+                betterui:textures/gui/sprites/container/inventory/inventory_button_bottom_highlight.png
+            );
+        }
+
+        .inventory-button--top {
+            height: 13;
+            padding-bottom: 2;
+            base-background: sprite(
+            betterui:textures/gui/sprites/container/inventory/inventory_button_top.png
+            );
+            hover-background: sprite(
+            betterui:textures/gui/sprites/container/inventory/inventory_button_top_highlight.png
+            );
+            pressed-background: sprite(
+            betterui:textures/gui/sprites/container/inventory/inventory_button_top_highlight.png
+            );
+        }
+
+        .icon {
+            width: 8;
+            height: 8;
+        }
+
+        .icon-stack {
+            background: sprite(
+                betterui:textures/gui/sprites/container/inventory/icon_stack.png
+            );
+        }
+
+        .icon-sort {
+        background: sprite(
+        betterui:textures/gui/sprites/container/inventory/icon_sort.png
+        );
+        }
     </style>
 
     <root class="flex col items-center gap-2 w-auto h-auto p-7">
-        <element class="row gap-2 shrink-1">
-            <!--<element class="spacer"/>-->
+        <element class="row gap-2 shrink-1 items-end">
             <element class="panel_bg row flex relative shrink-1 gap-0">
-                <armor-slots />
+                <!-- Armor slots: group="armor", 4 slots -->
+                <slots group="armor" rows="4" columns="1" indexes="0-3" />
+
                 <element class="panel-inner_bg">
-                    <entity id="entity" />
+                    <entity id="entity" style="height: 72" />
                 </element>
             </element>
-            <element class="panel_bg col shrink-1">
-                <crafting-slots id="crafting_slots" />
-                <element class="spacer"/>
-                <item-slot id="result_slot" />
+
+            <element class="col">
+                <element class="spacer" />
+                <element class="panel_bg row shrink-1">
+                    <!-- 2x2 crafting grid: group="crafting_grid", 4 slots -->
+                    <slots group="crafting_grid" rows="2" columns="2" indexes="0-3" />
+
+                    <element class="spacer" />
+                    <element class="col justify-center">
+                        <!-- crafting result: single slot from group="crafting_result" -->
+                        <slot group="crafting_result" index="0" />
+                    </element>
+                </element>
             </element>
-            <!--<element class="spacer"/>-->
         </element>
 
         <element class="background row gap-4 flex items-end justify-center">
             <element class="col justify-end">
-                <element class="spacer"/>
-                <offhand-slot />
+                <element class="spacer" />
+                <!-- offhand slot -->
+                <slot group="offhand" index="0" />
             </element>
-            <inventory-slots id="inventory_screen"/>
+
+            <!-- inventory (3x9) + hotbar (1x9) laid out via groups -->
+            <element class="col gap-4">
+                <!-- main inventory: 27 slots, indexes 0–26 inside group="inventory" -->
+                <slots group="inventory" rows="3" columns="9" indexes="0-26" />
+
+                <!-- hotbar: 9 slots, indexes 0–8 inside group="hotbar" -->
+                <slots group="hotbar" rows="1" columns="9" indexes="0-8" />
+            </element>
+
             <element class="col justify-end">
-                <element class="spacer"/>
-                <item-slot id="trash" />
+                <element class="spacer" />
+                <!-- UI-only trash slot (bound in BetterInventoryHolderMenu) -->
+                <slot group="trash" index="0" />
+            </element>
+
+            <element class="absolute" style="left: 12; top: 6;">
+                <element class="col">
+                    <button id="sort" class="inventory-button inventory-button--top" text="">
+                        <element class="icon icon-sort" />
+                    </button>
+                    <button id="merge" class="inventory-button inventory-button--bottom" text="">
+                        <element class="icon icon-stack" />
+                    </button>
+                </element>
             </element>
         </element>
     </root>

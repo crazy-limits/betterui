@@ -28,7 +28,7 @@ public class CraftingSlots extends UIElement {
     public int gridHeight = 2;
 
     public CraftingSlots() {
-        getLayout().setFlexDirection(YogaFlexDirection.COLUMN);
+        getLayout().setFlexDirection(YogaFlexDirection.ROW);
         for (int i = 0; i < gridHeight; i++) {
             var row = new CraftingSlots.Row(gridWidth);
             row.slots.get(i).setId("crafting_slot_%s".formatted(i * gridHeight));
@@ -66,7 +66,7 @@ public class CraftingSlots extends UIElement {
         public final ArrayList<ItemSlot> slots = new ArrayList<>();
 
         public Row(int size) {
-            getLayout().setFlexDirection(YogaFlexDirection.ROW);
+            getLayout().setFlexDirection(YogaFlexDirection.COLUMN);
             addClass("__crafting_row__");
 
             for (int i = 0; i < size; i++) {

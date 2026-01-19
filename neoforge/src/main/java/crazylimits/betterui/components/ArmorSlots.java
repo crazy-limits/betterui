@@ -37,7 +37,7 @@ public class ArmorSlots extends UIElement {
         }
 
         addEventListener(UIEvents.MUI_CHANGED, this::onModularUIChanged);
-        internalSetup();
+//        internalSetup();
     }
 
     protected void onModularUIChanged(UIEvent event) {
@@ -51,7 +51,7 @@ public class ArmorSlots extends UIElement {
                     var slot = col.slots[i];
                     EquipmentSlot equipmentslot = SLOT_IDS[i];
                     ResourceLocation resourcelocation = TEXTURE_EMPTY_SLOTS.get(equipmentslot);
-                    slot.bind(new ArmorSlot(inventory, player, equipmentslot, 36 + 3 - i, 0, 0, resourcelocation));
+                    slot.bind(new ArmorSlot(inventory, player, equipmentslot, 0, 0, 0, resourcelocation));
                 }
             }
         }
